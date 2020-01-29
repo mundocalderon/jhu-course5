@@ -1,0 +1,62 @@
+<div class="container" ng-controller="SignUpController as signUp">
+  <h1>Sign Up</h1>
+  <fieldset>
+    <legend> Sign Up Form </legend>
+    <form name='signUpForm' class="form-inline" novalidate>
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" name="firstName" placeholder="What's your first name?" ng-model="signUp.user.firstName" class="form-control" required >
+        <span ng-if="signUpForm.firstName.$error.required && signUpForm.firstName.$touched"> First name is required</span>
+      </div>
+      <br>
+
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" name="lastName" placeholder="What's your last name?" ng-model="signUp.user.lastName" class="form-control"required >
+        <span ng-if="signUpForm.lastName.$error.required && signUpForm.lastName.$touched"> Last name is required</span>
+      </div>
+      <br>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="Email" ng-model="signUp.user.email" class="form-control" required>
+        <span ng-if="signUpForm.email.$invalid && signUpForm.email.$touched"> Must be a valid email address: handle@domain format </span>
+      </div>
+      <br>
+
+      <div class="form-group">
+      <label for="phonenumber">Phone Number</label>
+        <input type="text" name="phone" placeholder="Phone ###-###-####" ng-model="signUp.user.phone" class="form-control" pattern="(\d{3})(\d{3})(\d{4})">
+        <span ng-if="signUpForm.phone.$invalid && signUpForm.phone.$touched"> Phone must be in the format ###-###-####.</span>
+      </div>
+      <br>
+
+      <div class="form-group">
+        <label for="favoriteDish">Favorite Dish</label>
+        <input type="text" name="fav" placeholder="Your favorite dish" ng-model="signUp.user.fav" class="form-control" required >
+        <span ng-if="signUpForm.fav.$error.required && signUpForm.fav.$touched"> Favorite dish is required</span>
+        <span ng-if="signUp.notValidFav"> No such Menu number exists</span>
+
+      </div>
+      <br>
+
+      <button class="btn btn-default" ng-disabled="signUpForm.$invalid" ng-click="signUp.submit()">Submit</button>
+
+      <!-- <div style="margin-top: 10px;">
+        Form valid? {{ signUpForm.$valid }}
+      </div> -->
+    </form>
+  </fieldset>
+
+
+  <div id="info" ng-if="signUp.completed">
+    First name: {{ signUp.user.firstName}} <br>
+    Last name: {{ signUp.user.lastName }} <br>
+    Email: {{ signUp.user.email}} <br>
+    Phone: {{ signUp.user.phone }} <br>
+    Favorite Dish: {{ signUp.user.fav.name }} <br>
+    Your information has been saved.
+  </div>
+
+</div>
+

@@ -1,0 +1,18 @@
+<div class="container" ng-controller="MyInfoController as myInfo">
+  <h1>My Info</h1>
+    <div id="unregistered" ng-if="!myInfo.user">
+      Not signed up yet, <a ui-sref="public.signUp">sign up now!</a>
+    </div>
+
+    <div id="info" ng-if="myInfo.user">
+      First name: {{ myInfo.user.firstName}} <br>
+      Last name: {{ myInfo.user.lastName }} <br>
+      Email: {{ myInfo.user.email}} <br>
+      Phone: {{ myInfo.user.phone }} <br>
+      Favorite Dish:  <br>
+      <img src="https://restaurant-server-0922.herokuapp.com/images/{{myInfo.user.fav.short_name}}.jpg"><br>
+      {{ myInfo.user.fav.name }} : {{ myInfo.user.fav.description }}
+    </div>
+
+</div>
+
